@@ -30,9 +30,9 @@ public class WhiteBlack extends Game {
         sprite = new Sprite(texture);
         batch = new CpuSpriteBatch();
         runGame = true;
-        Asset asset = new Asset();
-        asset.loading();
-        HashMap<Integer, LevelBean> levelBean = asset.getLevelBean();
+        Constant.asset = new Asset();
+        Constant.asset.loading();
+        HashMap<Integer, LevelBean> levelBean = Constant.asset.getLevelBean();
         System.out.println(levelBean.size());
         setScreen(new GameScreen());
     }
@@ -64,6 +64,6 @@ public class WhiteBlack extends Game {
         viewport.update(width,height);
         viewport.apply();
         Constant.width = viewport.getWorldWidth();
-        Constant.hight = viewport.getScreenHeight();
+        Constant.hight = viewport.getWorldHeight();
     }
 }

@@ -8,8 +8,8 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         stage = new Stage(WhiteBlack.viewport,WhiteBlack.batch);
-
-        GameView view = new GameView();
+        GameData data = new GameData();
+        GameView view = new GameView(data);
         stage.addActor(view);
     }
 
