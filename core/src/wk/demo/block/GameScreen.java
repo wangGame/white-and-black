@@ -1,5 +1,6 @@
 package wk.demo.block;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -8,6 +9,7 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         stage = new Stage(WhiteBlack.viewport,WhiteBlack.batch);
+        Gdx.input.setInputProcessor(stage);
         GameData data = new GameData();
         GameView view = new GameView(data);
         stage.addActor(view);

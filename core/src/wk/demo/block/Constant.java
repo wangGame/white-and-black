@@ -7,4 +7,7 @@ public class Constant {
     public static float hight = 0;
 
     public static Asset asset;
+
+    public static int WHITE = 0;
+    public static int BLACK = 1;
 }
