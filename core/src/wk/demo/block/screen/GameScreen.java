@@ -1,8 +1,12 @@
-package wk.demo.block;
+package wk.demo.block.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import wk.demo.block.screen.data.GameData;
+import wk.demo.block.screen.view.GameView;
+import wk.demo.block.WhiteBlack;
 
 public class GameScreen implements Screen {
     private Stage stage;

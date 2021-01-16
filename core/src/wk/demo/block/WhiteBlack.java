@@ -14,6 +14,8 @@ import java.util.HashMap;
 
 import wk.demo.block.aseet.Asset;
 import wk.demo.block.bean.LevelBean;
+import wk.demo.block.constant.Constant;
+import wk.demo.block.screen.GameScreen;
 
 public class WhiteBlack extends Game {
     private Texture texture;
@@ -24,7 +26,7 @@ public class WhiteBlack extends Game {
 
     @Override
     public void create() {
-        viewport = new ExtendViewport(300,300);
+        viewport = new ExtendViewport(Constant.stu_width,Constant.stu_width);
         resize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         texture = new Texture(Gdx.files.internal("title.png"));
         sprite = new Sprite(texture);
@@ -39,7 +41,7 @@ public class WhiteBlack extends Game {
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(0f, 0, 0, 1);
+        Gdx.gl.glClearColor(0.7f, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         super.render();
     }

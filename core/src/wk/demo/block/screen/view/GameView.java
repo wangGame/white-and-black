@@ -1,16 +1,13 @@
-package wk.demo.block;
+package wk.demo.block.screen.view;
 
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
+import wk.demo.block.actor.BlackActor;
 import wk.demo.block.bean.LevelBean;
+import wk.demo.block.constant.Constant;
+import wk.demo.block.screen.data.GameData;
 
 public class GameView extends Group {
     private BlackActor[][] blackActors;
@@ -48,9 +45,11 @@ public class GameView extends Group {
 
         blackActors = new BlackActor[rows][columns];
 
+
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                BlackActor actor = new BlackActor(arr[i][j],everyWidth-5,everyWidth-5,i,j);
+                BlackActor actor = new BlackActor(arr[i][j],
+                        everyWidth-5,everyWidth-5,j,i);
                 actor.setPosition((i)*(black.getWidth()/3+2.5F),j*(black.getHeight()/3+2.5F));
                 black.addActor(actor);
                 actor.addClickListener(listener);
@@ -59,13 +58,6 @@ public class GameView extends Group {
         }
         black.setPosition(getWidth()/2,getHeight()/2, Align.center);
         black.setDebug(true);
-
-        for (String s : split) {
-            int i = Integer.parseInt(s);
-            if (i==0){
-
-            }
-        }
     }
 
     private BlackClickListener listener = new BlackClickListener() {
@@ -92,10 +84,22 @@ public class GameView extends Group {
             for (BlackActor actor : actors) {
                 actor.revort();
             }
+
+            //检查是不是过关
+            for (BlackActor actor : actors) {
+                if (actor.getImageColor() == Constant.WHITE){
+                    return;
+                }
+            }
+            showPassPanel();
+        }
+
+        private void showPassPanel() {
+
         }
     };
 
-    interface BlackClickListener {
-        public void click(int x,int y);
+    public interface BlackClickListener {
+        void click(int x,int y);
     }
 }

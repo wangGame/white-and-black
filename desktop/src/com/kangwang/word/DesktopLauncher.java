@@ -13,8 +13,8 @@ public class DesktopLauncher {
 //        texturePack();
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = "block";
-        config.height = 16*32;
-        config.width = 16*32;
+        config.height = 640;
+        config.width = 360;
         new LwjglApplication(new WhiteBlack(),config);
     }
 
