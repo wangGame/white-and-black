@@ -24,8 +24,8 @@ public class BlackActor extends Group {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                listener.click(posX,posY);
                 revort();
+                listener.click(posX,posY);
             }
         });
     }

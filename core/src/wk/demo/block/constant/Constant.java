@@ -11,4 +11,5 @@ public class Constant {
     public static int BLACK = 1;
     public static int WHITE = 0;
 
+    public static int level = 7;
 }

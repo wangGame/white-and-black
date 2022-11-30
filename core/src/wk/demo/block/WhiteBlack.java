@@ -23,6 +23,7 @@ public class WhiteBlack extends Game {
     public static SpriteBatch batch;
     public static boolean runGame;
     public static Viewport viewport ;
+    public static Game game;
 
     @Override
     public void create() {
@@ -32,10 +33,10 @@ public class WhiteBlack extends Game {
         sprite = new Sprite(texture);
         batch = new CpuSpriteBatch();
         runGame = true;
+        this.game = this;
         Constant.asset = new Asset();
         Constant.asset.loading();
         HashMap<Integer, LevelBean> levelBean = Constant.asset.getLevelBean();
-        System.out.println(levelBean.size());
         setScreen(new GameScreen());
     }
 
