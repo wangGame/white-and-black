@@ -2,6 +2,7 @@ package wk.demo.block;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.CpuSpriteBatch;
@@ -25,6 +26,10 @@ public class WhiteBlack extends Game {
     public static Viewport viewport ;
     public static Game game;
 
+    public static Color white = new Color();
+    public static Color black = new Color();
+//    public static Color black = new Color();
+
     @Override
     public void create() {
         viewport = new ExtendViewport(Constant.stu_width,Constant.stu_width);
@@ -42,7 +47,7 @@ public class WhiteBlack extends Game {
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(0.7f, 0, 0, 1);
+        Gdx.gl.glClearColor(Constant.bgColor.r,Constant.bgColor.g,Constant.bgColor.b,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         super.render();
     }

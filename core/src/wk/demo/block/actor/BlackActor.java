@@ -30,12 +30,16 @@ public class BlackActor extends Group {
         });
     }
 
+    public void setBlackColor(Color black) {
+        this.black.setColor(black);
+    }
+
     public void setImageColor(int imageColor) {
         this.imageColor = imageColor;
         if (this.imageColor == Constant.BLACK){
-            black.setColor(Color.BLACK);
+
         }else {
-            black.setColor(Color.WHITE);
+
         }
     }
 
@@ -50,5 +54,15 @@ public class BlackActor extends Group {
 
     public void addClickListener(GameView.BlackClickListener listener) {
         this.listener = listener;
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if (this.imageColor == Constant.BLACK){
+            black.setColor(Constant.black);
+        }else {
+            black.setColor(Constant.white);
+        }
     }
 }

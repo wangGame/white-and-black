@@ -1,21 +1,26 @@
 package wk.demo.block.screen.view;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
+import wk.demo.block.WhiteBlack;
 import wk.demo.block.actor.BlackActor;
 import wk.demo.block.bean.LevelBean;
 import wk.demo.block.constant.Constant;
 import wk.demo.block.group.SuccessGroup;
+import wk.demo.block.screen.GameScreen;
 import wk.demo.block.screen.data.GameData;
 
 public class GameView extends Group {
     private BlackActor[][] blackActors;
     private int rows;
     private int columns;
+    private int status;
     public GameView(GameData data){
+        status = 0;
         setSize(Constant.width,Constant.hight);
         Group black = new Group();
         addActor(black);
@@ -111,17 +116,50 @@ public class GameView extends Group {
 
         private void showPassPanel() {
             Constant.level++;
-            SuccessGroup successGroup = new SuccessGroup();
-            getStage().addActor(successGroup);
+            status = 1;
 
-            successGroup.setPosition(Constant.width/2,Constant.hight/2,Align.center);
-            successGroup.setOrigin(Align.center);
-            successGroup.setScale(0);
-            successGroup.addAction(Actions.scaleTo(1,1,0.3f));
+//            for (BlackActor[] blackActor : blackActors) {
+//                for (BlackActor actor : blackActor) {
+//                    actor.setBlackColor(Color.BLACK);
+//                }
+//            }
+//            WhiteBlack.game.setScreen(new GameScreen());
+//            SuccessGroup successGroup = new SuccessGroup();
+//            getStage().addActor(successGroup);
+//            successGroup.setPosition(Constant.width/2,Constant.hight/2,Align.center);
+//            successGroup.setOrigin(Align.center);
+//            successGroup.setScale(0);
+//            successGroup.addAction(Actions.scaleTo(1,1,0.3f));
+
+            addAction(Actions.delay(6,Actions.run(()->{
+                WhiteBlack.game.setScreen(new GameScreen());
+            })));
         }
     };
 
     public interface BlackClickListener {
         void click(int x,int y);
+    }
+
+    private void initColor(float delta){
+        Constant.black.lerp(Constant.blackColor1,delta);
+        Constant.white.lerp(Constant.whiteColor1,delta);
+        Constant.bgColor.lerp(Constant.bgColor1,delta);
+    }
+
+    private void successColor(float delta){
+        Constant.black.lerp(Constant.blackColor2,delta);
+        Constant.white.lerp(Constant.whiteColor2,delta);
+        Constant.bgColor.lerp(Constant.bgColor2,delta);
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if (status == 0){
+            initColor(delta);
+        }else if (status == 1){
+            successColor(delta);
+        }
     }
 }
